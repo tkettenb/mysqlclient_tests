@@ -8,7 +8,7 @@
 #include <pthread.h>
 #include <mysql.h>
 
-// Just a small exmaple of multithreading, MUST link with -lpthreads -lmysqlclient_r
+// Just a small exmaple of multithreading, MUST link with -lpthreads -lmysqlclient
 // Note: Optimal # of threads and connections pool is the # of CPUs BUT,
 // that depends a lot on how fast you expect the answer to your queries
 
