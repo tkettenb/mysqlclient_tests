@@ -36,6 +36,48 @@ That should print the current version of the installed mariadb server, eg:
 1. mysql_example (copied from [1])
 1. mysql_load (based on the above) 
 
+## Compile
+
+Compile the example programme:
+
+    # gcc -O0 -ggdb  -o mysql_example -lpthread -lmysqlclient\
+        -I/usr/include/mysql -L/usr/lib64/mysql mysql_example.c
+
+    mysql_example.c: In function ‘main’:
+    mysql_example.c:68:63: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+                     pthread_create(&pthread[i], NULL, db_pthread, (void *)i);
+                                                                   ^
+    mysql_example.c: In function ‘db_pthread’:
+    mysql_example.c:83:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+             int i = (int) arg, j, cancelstate;
+                         ^
+## Example run with valgrind
+
+# valgrind --leak-check=full ./mysql_example 
+==935== Memcheck, a memory error detector
+==935== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==935== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info
+==935== Command: ./mysql_example
+==935== 
+Thread Safe ON
+DB Connections: 2, Threads: 2, Queries per Thread: 500, Total Queries: 1000
+==935== 
+==935== HEAP SUMMARY:
+==935==     in use at exit: 78,208 bytes in 22 blocks
+==935==   total heap usage: 9,102 allocs, 9,080 frees, 49,430,028 bytes allocated
+==935== 
+==935== LEAK SUMMARY:
+==935==    definitely lost: 0 bytes in 0 blocks
+==935==    indirectly lost: 0 bytes in 0 blocks
+==935==      possibly lost: 0 bytes in 0 blocks
+==935==    still reachable: 78,208 bytes in 22 blocks
+==935==         suppressed: 0 bytes in 0 blocks
+==935== Reachable blocks (those to which a pointer was found) are not shown.
+==935== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==935== 
+==935== For counts of detected and suppressed errors, rerun with: -v
+==935== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
 
 # References
 
@@ -43,3 +85,6 @@ That should print the current version of the installed mariadb server, eg:
     to be a backup of the old doc.mysql.com resource):
    [mysql 5.5 refman - threaded-clients](http://ftp.nchu.edu.tw/MySQL/doc/refman/5.5/en/threaded-clients.html)
     see: Posted by Lefteris Tsintjelis on October 7 2005 10:48am
+[2] [Maria DB connector c](https://mariadb.com/kb/en/library/mariadb-connector-c/)
+
+
