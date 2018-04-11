@@ -2,6 +2,7 @@
 
 #include <stdarg.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <pthread.h>
@@ -38,7 +39,7 @@ void db_disconnect(MYSQL *db);
 long db_query(MYSQL *db, pthread_mutex_t *lock, const char *query);
 
 int main(int argc, char **argv) {
-        int i;
+        intptr_t i;
         pthread_t pthread[THREADS];
         db_config dbc;
 
@@ -80,7 +81,8 @@ int main(int argc, char **argv) {
 }
 
 void *db_pthread(void *arg) {
-        int i = (int) arg, j, cancelstate;
+        intptr_t i = (intptr_t) arg;
+        int j, cancelstate;
 
         // Always a good idea to disable thread cancel state or
         // unexpected crashes may occur in case of database failures
