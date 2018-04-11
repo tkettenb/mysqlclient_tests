@@ -84,13 +84,16 @@ void *db_pthread(void *arg) {
         intptr_t i = (intptr_t) arg;
         int j, cancelstate;
 
+        // const char* the_query = "show status";
+        const char* the_query = "load data local infile 'mysql_example.c' into table `test`.progy_table";
+
         // Always a good idea to disable thread cancel state or
         // unexpected crashes may occur in case of database failures
         pthread_setcancelstate(PTHREAD_CANCEL_DISABLE,&cancelstate);
         if ((mysql_thread_init() != 0))
                 db_die("mysql_thread_init failed: %s", mysql_error(dbm[i].db));
         for (j = 0; j < QPERTHR; ++j)
-                db_query(dbm[i].db, &(dbm[i].lock), "show status");
+                db_query(dbm[i].db, &(dbm[i].lock), the_query);
         mysql_thread_end();
         pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,&cancelstate);
         pthread_exit((void *)0);
