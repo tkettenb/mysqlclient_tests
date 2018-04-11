@@ -1,4 +1,13 @@
-/* from: http://ftp.nchu.edu.tw/MySQL/doc/refman/5.5/en/threaded-clients.html */
+/*
+ * This file has been provided as a comment to: 
+ *    http://ftp.nchu.edu.tw/MySQL/doc/refman/5.5/en/threaded-clients.html
+ *
+ * Modificaitons:
+ *  - using intptr_t instead of int (where it is cased to (void*) it caused compiler warnings on 64bit systems.
+ *  - changed 'SHOW STATUS;' to 'LOAD DATA LOCAL ...' in 'db_pthread'
+ *
+ * Enjoy.
+ */
 
 #include <stdarg.h>
 #include <stdio.h>
