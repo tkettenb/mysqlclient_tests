@@ -43,14 +43,6 @@ Compile the example programme:
     # gcc -O0 -ggdb  -o mysql_example -lpthread -lmysqlclient\
         -I/usr/include/mysql -L/usr/lib64/mysql mysql_example.c
 
-    mysql_example.c: In function ‘main’:
-    mysql_example.c:68:63: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-                     pthread_create(&pthread[i], NULL, db_pthread, (void *)i);
-                                                                   ^
-    mysql_example.c: In function ‘db_pthread’:
-    mysql_example.c:83:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-             int i = (int) arg, j, cancelstate;
-                         ^
 ## Example run with valgrind
 
 This example was using sql: 'show status' in db_pthread
