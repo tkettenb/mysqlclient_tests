@@ -2,6 +2,9 @@
  * This file has been provided as a comment to: 
  *    http://ftp.nchu.edu.tw/MySQL/doc/refman/5.5/en/threaded-clients.html
  *
+ *    mysql 5.5 refman - threaded-clients
+ *    Posted by Lefteris Tsintjelis on October 7 2005 10:48am
+ *
  * Modificaitons:
  *  - using intptr_t instead of int (where it is cased to (void*) it caused compiler warnings on 64bit systems.
  *  - changed 'SHOW STATUS;' to 'LOAD DATA LOCAL ...' in 'db_pthread'
