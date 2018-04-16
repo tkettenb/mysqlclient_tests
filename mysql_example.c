@@ -6,7 +6,7 @@
  *    Posted by Lefteris Tsintjelis on October 7 2005 10:48am
  *
  * Modificaitons:
- *  - using intptr_t instead of int (where it is cased to (void*) it caused compiler warnings on 64bit systems.
+ *  - using intptr_t instead of int (where it is cast to (void*). it caused compiler warnings on 64bit systems.
  *  - changed 'SHOW STATUS;' to 'LOAD DATA LOCAL ...' in 'db_pthread'
  *
  * Enjoy.
